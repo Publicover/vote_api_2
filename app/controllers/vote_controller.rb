@@ -11,4 +11,13 @@ class VoteController < ApplicationController
   def create
     Vote.create
   end
+
+  def cast_vote
+    if params["token"] == true
+      token = params["token"]
+      render json: Vote.joins(:candidate_id)
+    else
+      render json: "Invalid token."
+    end
+  end
 end
