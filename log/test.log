@@ -1997,3 +1997,148 @@ VoteTest: test_create_vote
 VoteTest: test_vote_exists
 --------------------------
   [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (8.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mFixture Delete (25.0ms)[0m  [1mDELETE FROM "candidates"[0m
+  [1m[35mFixture Insert (0.7ms)[0m  INSERT INTO "candidates" ("id", "name", "hometown", "district", "party", "created_at", "updated_at") VALUES (1, 'MyString', 'MyString', 'MyString', 'MyString', '2016-02-25 03:16:45', '2016-02-25 03:16:45')
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "candidates" ("id", "name", "hometown", "district", "party", "created_at", "updated_at") VALUES (2, 'MyString', 'MyString', 'MyString', 'MyString', '2016-02-25 03:16:45', '2016-02-25 03:16:45')[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "voters"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "voters" ("id", "candidate_id", "name", "party", "token", "created_at", "updated_at") VALUES (1, 1, 'MyString', 'MyString', 'MyString', '2016-02-25 03:16:45', '2016-02-25 03:16:45')[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "voters" ("id", "candidate_id", "name", "party", "token", "created_at", "updated_at") VALUES (2, 1, 'MyString', 'MyString', 'MyString', '2016-02-25 03:16:45', '2016-02-25 03:16:45')
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "votes"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "votes" ("id", "voter_id", "candidate_id", "created_at", "updated_at") VALUES (1, 1, 1, '2016-02-25 03:16:45', '2016-02-25 03:16:45')
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "votes" ("id", "voter_id", "candidate_id", "created_at", "updated_at") VALUES (2, 1, 1, '2016-02-25 03:16:45', '2016-02-25 03:16:45')[0m
+  [1m[35m (2.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------
+VoterControllerTest: test_should_get_create
+-------------------------------------------
+Processing by VoterController#create as HTML
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mVoter Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "voters" WHERE "voters"."token" = '6ce21d267aa782d8227ca7df3c8f2944' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered voter/create.html.erb within layouts/application (35.5ms)
+Completed 200 OK in 811ms (Views: 560.7ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-----------------------------------------
+VoterControllerTest: test_should_get_show
+-----------------------------------------
+Processing by VoterController#show as HTML
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+------------------------------------------
+VoterControllerTest: test_should_get_index
+------------------------------------------
+Processing by VoterController#index as HTML
+  [1m[36mVoter Load (0.3ms)[0m  [1mSELECT "voters".* FROM "voters"[0m
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------
+VoteControllerTest: test_should_get_index
+-----------------------------------------
+Processing by VoteController#index as HTML
+  [1m[35mVote Load (0.1ms)[0m  SELECT "votes".* FROM "votes"
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+----------------------------------------
+VoteControllerTest: test_should_get_show
+----------------------------------------
+Processing by VoteController#show as HTML
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT  "votes".* FROM "votes"  ORDER BY "votes"."id" ASC LIMIT 1[0m
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+VoteControllerTest: test_should_get_create
+------------------------------------------
+Processing by VoteController#create as HTML
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendered vote/create.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 32ms (Views: 29.0ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-------------------------
+VoterTest: test_the_truth
+-------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------
+VoterTest: test_create_candidate
+--------------------------------
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mVoter Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "voters" WHERE "voters"."token" = '08476fd76e813d6f58ad60e3ac2ccf1a' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "voters" ("name", "party", "token", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Ted Smith"], ["party", "Whig"], ["token", "08476fd76e813d6f58ad60e3ac2ccf1a"], ["created_at", "2016-02-25 03:16:46.421387"], ["updated_at", "2016-02-25 03:16:46.421387"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------
+VoterTest: test_voter_exists
+----------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------
+CandidateControllerTest: test_should_get_create
+-----------------------------------------------
+Processing by CandidateController#create as HTML
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendered candidate/create.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 15ms (Views: 6.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------
+CandidateControllerTest: test_should_get_index
+----------------------------------------------
+Processing by CandidateController#index as HTML
+  [1m[35mCandidate Load (0.2ms)[0m  SELECT "candidates".* FROM "candidates"
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+---------------------------------------------
+CandidateControllerTest: test_should_get_show
+---------------------------------------------
+Processing by CandidateController#show as HTML
+  [1m[36mCandidate Load (0.2ms)[0m  [1mSELECT  "candidates".* FROM "candidates"  ORDER BY "candidates"."id" ASC LIMIT 1[0m
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------
+CandidateTest: test_create_candidate
+------------------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "candidates" ("name", "hometown", "district", "party", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Biggie"], ["hometown", "Brooklyn"], ["district", "NY"], ["party", "Playas"], ["created_at", "2016-02-25 03:16:46.456491"], ["updated_at", "2016-02-25 03:16:46.456491"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (1.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-----------------------------
+CandidateTest: test_the_truth
+-----------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+------------------------------------
+CandidateTest: test_candidate_exists
+------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------
+VoteTest: test_create_vote
+--------------------------
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "votes" ("candidate_id", "voter_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["candidate_id", 1], ["voter_id", 1], ["created_at", "2016-02-25 03:16:46.463553"], ["updated_at", "2016-02-25 03:16:46.463553"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------
+VoteTest: test_vote_exists
+--------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------
+VoteTest: test_the_truth
+------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
