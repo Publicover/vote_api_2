@@ -20,4 +20,16 @@ class VoteController < ApplicationController
       render json: "Invalid token."
     end
   end
+
+  def destroy
+    if params["token"] == true
+      token = params["token"]
+      vote = Vote.destroy
+      render json: "Vote destroyed."
+    else
+      render json: "Invalid token."
+    end
+  end
+
+
 end

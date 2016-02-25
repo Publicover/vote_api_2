@@ -15,4 +15,8 @@ class CandidateController < ApplicationController
     party = params["party"]
     Candidate.create(name: name, hometown: hometown, district: district, party: party)
   end
+
+  def display_votes
+    render json: Candidate.joins(:voter_id)
+  end
 end
